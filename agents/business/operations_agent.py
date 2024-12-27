@@ -28,23 +28,23 @@ class OperationsAgent:
         """
         
         self.nl2sql_prompt = ChatPromptTemplate.from_messages([
-            ("system", """You are an expert in converting natural language queries to SQL. 
-            Given the following schema and a question, generate a SQLite-compatible SQL query.
-            
-            {schema}
-            
-            Rules:
-            1. Use substr(ASSIGNED_DATE_TIME, 1, 7) for monthly grouping
-            2. Use julianday() for date differences
-            3. Always include proper error handling
-            4. Round percentages to 2 decimal places using ROUND()
-            5. Order results meaningfully (usually by date DESC)
-            6. Always alias columns with clear names
-            7. For month-over-month analysis, use substr(ASSIGNED_DATE_TIME, 1, 7) as MONTH
-            
-            Generate only the SQL query, no explanations."""),
-            ("human", "{question}")
-        ])
+    ("system", """You are an expert in converting natural language queries to SQL. 
+    Given the following schema and a question, generate a Snowflake-compatible SQL query.
+    
+    {schema}
+    
+    Rules:
+    1. Use DATE_TRUNC('MONTH', ASSIGNED_DATE_TIME) for monthly grouping
+    2. Use DATEDIFF('day', start_date, end_date) for date differences
+    3. Always include proper error handling
+    4. Round percentages to 2 decimal places using ROUND()
+    5. Order results meaningfully (usually by date DESC)
+    6. Always alias columns with clear names
+    7. For month-over-month analysis, use DATE_TRUNC('MONTH', ASSIGNED_DATE_TIME) as MONTH
+    
+    Generate only the SQL query, no explanations."""),
+    ("human", "{question}")
+])
 
     def process_query(self, query: str, context: Dict[str, Any] = None) -> Tuple[str, str, List[Dict]]:
         try:
