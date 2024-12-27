@@ -31,3 +31,25 @@ AGENT_TYPES = {
 # Query Classification Thresholds
 CONFIDENCE_THRESHOLD = 0.7
 MAX_CONTEXT_LENGTH = 5
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Snowflake Configuration
+SNOWFLAKE_CONFIG = {
+    'user': os.getenv('SNOWFLAKE_USER'),
+    'password': os.getenv('SNOWFLAKE_PASSWORD'),
+    'account': os.getenv('SNOWFLAKE_ACCOUNT'),
+    'role': os.getenv('SNOWFLAKE_ROLE'),
+    'warehouse': os.getenv('SNOWFLAKE_WAREHOUSE'),
+    'database': os.getenv('SNOWFLAKE_DATABASE'),
+    'schema': os.getenv('SNOWFLAKE_SCHEMA')
+}
+
+# Table Configuration
+TABLE_NAME = "VIEW_TITANIUM_PLATINUM_REPORT"
+SCHEMA_NAME = SNOWFLAKE_CONFIG['schema']
+
+# Other configurations remain the same...

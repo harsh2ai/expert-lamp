@@ -36,21 +36,21 @@ class DeliveryAgent:
     def _get_tracking_info(self, awb: str) -> str:
         """Get tracking information for an AWB"""
         query = """
-            SELECT 
-                AWB_CODE,
-                SHIPMENT_STATUS,
-                ASSIGNED_DATE_TIME,
-                FIRST_ATTEMPT_DATE,
-                AWB_DELIVERED_DATE,
-                NO_OF_ATTEMPTS,
-                NDR_RAISED_SHIPMENTS,
-                PARENT_COURIER,
-                ZONE,
-                CITY_TIER
-            FROM DEV_REPORTS_COPILOT_REPORT
-            WHERE AWB_CODE = ?
-            """
-        
+        SELECT 
+            AWB_CODE,
+            SHIPMENT_STATUS,
+            ASSIGNED_DATE_TIME,
+            FIRST_ATTEMPT_DATE,
+            AWB_DELIVERED_DATE,
+            NO_OF_ATTEMPTS,
+            NDR_RAISED_SHIPMENTS,
+            PARENT_COURIER,
+            ZONE,
+            CITY_TIER
+        FROM VIEW_TITANIUM_PLATINUM_REPORT  # Changed here
+        WHERE AWB_CODE = ?
+        """
+            
         try:
             df = pd.read_sql_query(query, self.conn, params=[awb])
             

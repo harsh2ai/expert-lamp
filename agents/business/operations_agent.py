@@ -11,7 +11,7 @@ class OperationsAgent:
         
         # Schema information for the LLM
         self.table_schema = """
-        Table: DEV_REPORTS_COPILOT_REPORT
+        Table: VIEW_TITANIUM_PLATINUM_REPORT
         Columns:
         - ZONE: Geographical delivery zone (z_a, z_b, z_c, z_d, z_e, z_e2)
         - CITY_TIER: Tier of delivery city (Tier1, Tier2, Tier3, Metro, Others)

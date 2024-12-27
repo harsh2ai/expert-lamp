@@ -4,7 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class ShipmentTracking(Base):
-    __tablename__ = "DEV_REPORTS_COPILOT_REPORT"
+    __tablename__ = "VIEW_TITANIUM_PLATINUM_REPORT"
+    __table_args__ = {'schema': 'public'}
 
     # Using AWB_CODE as primary key
     AWB_CODE = Column(String, primary_key=True)

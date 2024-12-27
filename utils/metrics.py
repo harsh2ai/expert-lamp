@@ -17,7 +17,7 @@ class MetricsCalculator:
             COUNT(*) as total_shipments,
             ROUND(CAST(SUM(RTO_SHIPMENTS) AS FLOAT) / 
                   COUNT(*) * 100, 2) as rto_rate
-        FROM DW_DB_PROD.DATA.DEV_REPORTS_COPILOT_REPORT
+        FROM DW_DB_PROD.DATA.VIEW_TITANIUM_PLATINUM_REPORT
         {where_clause}
         {group_by_clause}
         """
